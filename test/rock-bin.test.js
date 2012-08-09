@@ -13,7 +13,7 @@ function AFE(file1, file2) {
     assert(fs.readFileSync(file1).toString() === fs.readFileSync(file2).toString());
 }
 
-describe('rock', function(){
+describe('rock-bin', function(){
     beforeEach(function(done){
         fs.exists(TEST_PATH, function(itDoes) {
             if (itDoes) {
@@ -32,7 +32,7 @@ describe('rock', function(){
         fs.writeFileSync(ROCK_CONF, JSON.stringify(conf, null, 4));
     });
 
-    it('should execute rock from the command line', function(done){
+    it('should generate a basic project', function(done){
         var testPath = path.join(TEST_PATH, 'exec_from_cmd')
         var debugFile = path.join(testPath, 'debug.txt');
 
