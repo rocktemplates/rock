@@ -27,7 +27,8 @@
         "path-extra": "0.0.x",
         "underscore": "1.3.x",
         "request": "2.10.x",
-        "nextflow": "0.2.x"
+        "nextflow": "0.2.x",
+        "triggerflow": "0.0.3"
      },
      "devDepdencies":{
         "mocha": "1.3.x",
