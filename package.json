@@ -1,6 +1,6 @@
 {
     "name" : "rock", 
-    "version" : "0.0.1",
+    "version" : "0.0.2",
     "description" : "Generate project skeletons for you based off of predefined templates.",
     "homepage" : [
         "https://github.com/jprichardson/rock"
@@ -26,7 +26,8 @@
         "tweezers": "0.0.x",
         "path-extra": "0.0.x",
         "underscore": "1.3.x",
-        "request": "2.10.x"
+        "request": "2.10.x",
+        "nextflow": "0.2.x"
      },
      "devDepdencies":{
         "mocha": "1.3.x",
