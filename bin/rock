@@ -35,8 +35,14 @@ var argv = opt.argv;
         rock.list(rockConf);
     } else if (argv._.length === 1 || argv.rock) {
         if (argv._.length === 1 && argv.rock) {
-            //console.log('GONNA CREATE')
-            rock.create(argv._[0], rockConf, argv.rock, function(err){
+            var rockObj = rockConf.rocks[argv.rock];
+            var repoPath = null;
+            if (rockObj) {
+                repoPath = rockObj.repo;
+            } else {
+                repoPath = argv.rock; //here we are assuming a repo path was passed in instead of a rock name
+            }
+            rock.create(argv._[0], repoPath, function(err){
                 if (err) 
                     console.log(err);
                 else
