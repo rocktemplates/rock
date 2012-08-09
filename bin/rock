@@ -4,7 +4,8 @@ var fnoc = require('fnoc').configs()
   , P = require('autoresolve')
   , util = require('util')
   , rock = require(P('lib/rock.js'))
-  , path = require('path-extra');
+  , path = require('path-extra')
+  , fs = require('fs');
 
 var USAGE = util.format("\nRock [%s]: Install project templates.\n", fnoc.package.version);
     USAGE += "Usage: rock [path] -r [rock]";
@@ -13,18 +14,29 @@ var opt = require('optimist')
   .usage(USAGE)
   .alias('l', 'list').describe('l', 'show available rocks')
   .alias('r', 'rock').describe('r', 'rock name or repo')
-  .alias('c', 'config').describe('c', 'config file path').default('c', path.join(path.homedir(), '.rock', 'rock.json'));
+  .alias('c', 'config').describe('c', 'config file path').default('c', path.join(path.homedir(), '.rock', 'rockconf.json'));
 var argv = opt.argv;
 
-if (argv._.length === 0) {
-    displayHelp();
-} 
-else {
+
+    var rockConf = null;
+    try {
+        rockConf = JSON.parse(fs.readFileSync(argv.config).toString());
+    } catch (e) {
+        console.log(e);
+        process.exit(1);
+    }
+
+    if (rockConf === null) {
+        console.log('Bad rockConf.')
+        process.exit(1);
+    }
+
     if (argv.list) {
-        rock.list();
+        rock.list(rockConf);
     } else if (argv._.length === 1 || argv.rock) {
         if (argv._.length === 1 && argv.rock) {
-            rock.create(argv._[0], argv.rock, function(err){
+            //console.log('GONNA CREATE')
+            rock.create(argv._[0], rockConf, argv.rock, function(err){
                 if (err) 
                     console.log(err);
                 else
@@ -37,7 +49,7 @@ else {
     else {
         displayHelp();
     }
-}
+
 
 function displayHelp(){
     console.log(opt.help())

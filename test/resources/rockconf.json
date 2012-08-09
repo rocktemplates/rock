@@ -1,0 +1,8 @@
+{
+    "rocks": {
+        "node-lib": {
+            "repo": "",
+            "description": "Barebones Node.js project."
+        }
+    }
+}

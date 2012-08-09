@@ -24,7 +24,9 @@
         "hogan.js": "2.0.x",
         "walker": "1.0.x",
         "tweezers": "0.0.x",
-        "path-extra": "0.0.x"
+        "path-extra": "0.0.x",
+        "underscore": "1.3.x",
+        "request": "2.10.x"
      },
      "devDepdencies":{
         "mocha": "1.3.x",
@@ -33,7 +35,8 @@
     },
     "main" : "./lib/rock",
     "scripts": {
-        "test": "mocha test"
+        "test": "mocha test",
+        "postinstall": "node ./scripts/postinstall.js"
     },
     "bin": {
         "rock": "./bin/rock"
