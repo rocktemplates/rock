@@ -97,6 +97,25 @@ Rock will prompt:
 
 Rock, then will create the file structure of your new project with the values of your template tokens replaced with what you typed. Rock already understands `file`, `date`, and few others.
 
+### Ignore Directories
+
+In your rock repo, add a file `.rock/rock.json`. Add the following:
+
+```json
+{
+    "ignoreDirs": ["./dirToIgnore"]
+}
+```
+
+Why would you do this? Let's say that you're calling rock programmatically and you don't want rock to prompt you for any tokens because you are going to use Mustache/Hogan/Handlebars in your own code.
+
+
+
+Rocks
+------
+
+See more rocks at: https://github.com/rocktemplates
+
 
 [1]: https://github.com/rocktemplates
 [2]: http://nodejs.org/dist/latest/

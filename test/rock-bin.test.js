@@ -3,7 +3,8 @@ var assert = require('assert')
   , suppose = require('suppose')
   , next = require('nextflow')
   , path = require('path-extra')
-  , fs = require('fs-extra');
+  , fs = require('fs-extra')
+  , exec = require('child_process').exec;
 
 var ROCK_CMD = P('bin/rock')
   , TEST_PATH = path.join(path.tempdir(), 'test-rock')
@@ -39,6 +40,10 @@ describe('rock-bin', function(){
         var appName = 'myapp';
         var projectName = 'cool_module';
 
+        var testRockPath = P('test/resources/rocks/node-lib');
+        var rockGitDir = path.join(testRockPath, '.git');
+        var cwd = process.cwd();
+
         next({
             ERROR: function(err) {
                 console.log('ERR')
@@ -48,10 +53,26 @@ describe('rock-bin', function(){
             makeTestDir: function() {
                 fs.mkdir(testPath, this.next);
             },
+            gitInitTestRockRepo: function() {
+                process.chdir(testRockPath);
+                
+                if (fs.existsSync(rockGitDir))
+                    fs.removeSync(rockGitDir);
+                
+                exec('git init', this.next);
+            },
+            gitAdd: function() {
+                exec('git add .', this.next);
+            },
+            gitCommit: function() {
+                exec('git commit -am "Initial commit."', this.next);
+            },
             executeRock: function(){
+                process.chdir(cwd);
+
                 var rockConfigPath = ROCK_CONF;
                 var rockConf = JSON.parse(fs.readFileSync(rockConfigPath).toString());
-                rockConf.rocks['node-lib'].repo = P('test/resources/rocks/node-lib');
+                rockConf.rocks['node-lib'].repo = testRockPath;
                 fs.writeFileSync(rockConfigPath, JSON.stringify(rockConf, null, 4));
 
                 process.chdir(testPath);
@@ -76,12 +97,16 @@ describe('rock-bin', function(){
                     AFE(file1, file2);
                 }
 
-                assert(fs.existsSync(outDir));
+                if (fs.existsSync(rockGitDir))
+                    fs.removeSync(rockGitDir);
+
+               assert(fs.existsSync(outDir));
 
                 AF('LICENSE');
                 AF('README.md');
                 AF('lib/' + projectName + '.js');
                 AF('test/' + projectName + '.test.js');
+                AF('ignore_this/READTHIS.md')
 
                 assert(!fs.existsSync(path.join(outDir, '.git')));
                 assert(!fs.existsSync(path.join(outDir, '.rock')));
