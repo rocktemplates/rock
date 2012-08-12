@@ -1,3 +1,7 @@
+0.0.5 / 2012-08-12
+------------------
+* Fixed crashed on `rock --list`.
+
 0.0.4 / 2012-08-12
 ------------------
 * Rocks can now specify to have directories ignored by putting `ignoreDirs` in their `rock.json` file.
