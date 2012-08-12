@@ -1,19 +1,19 @@
 {
     "name" : "rock", 
-    "version" : "0.0.2",
+    "version" : "0.0.3",
     "description" : "Generate project skeletons for you based off of predefined templates.",
     "homepage" : [
-        "https://github.com/jprichardson/rock"
+        "https://github.com/rocktemplates/rock"
     ],
     "repository" : {
         "type" : "git", 
-        "url" : "https://github.com/jprichardson/rock"
+        "url" : "https://github.com/rocktemplates/rock"
     },
     "keywords" : ["rock", "foundation", "skeleton", "generate", "template"],
     "author" : "JP Richardson <jprichardson@gmail.com>",
     "licenses" : [ {
         "type" : "MIT",
-        "url" : "http://github.com/jprichardson/rock/raw/master/LICENSE"
+        "url" : "http://github.com/rocktemplates/rock/raw/master/LICENSE"
     }],
     "dependencies" : {
         "fs-extra": "0.1.x", 
