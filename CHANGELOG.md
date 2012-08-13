@@ -1,3 +1,7 @@
+0.0.7 / 2012-08-13
+------------------
+* Fixed bug that prevented rocks without `ignoreDirs` to be created.
+
 0.0.6 / 2012-08-13
 ------------------
 * Added `--update` command line arg.

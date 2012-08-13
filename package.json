@@ -1,6 +1,6 @@
 {
   "name": "rock",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Generate file structures or project skeletonsfrom predefined templates.",
   "homepage": [
     "https://github.com/rocktemplates/rock"
