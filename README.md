@@ -54,11 +54,16 @@ or
     Options:
      -l, --list    show available rocks
      -r, --rock    rock name or repo   
+     -u, --update  update rock list from official rockconf on Github
      -c, --config  config file path      [default: "/Users/jp/.rock/rockconf.json"]
 
 view all rocks in your config file:
 
     rock --list
+
+update your `rockconf.json` file with the latest Rocks from Github
+
+    rock --update
 
 want to create a project from a rock hosted somewhere else? No problem:
 

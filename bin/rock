@@ -14,6 +14,7 @@ var opt = require('optimist')
   .usage(USAGE)
   .alias('l', 'list').describe('l', 'show available rocks')
   .alias('r', 'rock').describe('r', 'rock name or repo')
+  .alias('u', 'update').describe('u', 'update rock list from official rockconf on Github')
   .alias('c', 'config').describe('c', 'config file path').default('c', path.join(path.homedir(), '.rock', 'rockconf.json'));
 var argv = opt.argv;
 
@@ -22,17 +23,18 @@ var argv = opt.argv;
     try {
         rockConf = JSON.parse(fs.readFileSync(argv.config).toString());
     } catch (e) {
-        console.log(e);
-        process.exit(1);
+        console.error(e);
     }
 
     if (rockConf === null) {
         console.log('Bad rockConf.')
-        process.exit(1);
     }
 
     if (argv.list) {
         rock.list(rockConf);
+    } else if (argv.update) {
+        rock.update(argv.config);
+        console.log('Updated'); //we need callback error handling here
     } else if (argv._.length === 1 || argv.rock) {
         if (argv._.length === 1 && argv.rock) {
             var rockObj = rockConf.rocks[argv.rock];

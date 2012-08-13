@@ -1,3 +1,8 @@
+0.0.6 / 2012-08-13
+------------------
+* Added `--update` command line arg.
+* Now proceeds regardless of whether it can parse `rockconf.json`.
+
 0.0.5 / 2012-08-12
 ------------------
 * Fixed crashed on `rock --list`.
