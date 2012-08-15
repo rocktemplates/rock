@@ -34,8 +34,7 @@ describe('rock', function(){
 
     describe('+ create()', function(){
         it('should generate a basic project', function(done){
-            done();
-            return
+
             var testPath = path.join(TEST_PATH, 'create')
             var debugFile = path.join(testPath, 'debug.txt');
 
@@ -55,7 +54,14 @@ describe('rock', function(){
                     var rockRepo = P('test/resources/rocks/node-lib');
                     process.chdir(testPath);
                     
-                    rock.create(appName, rockRepo, this.next);
+                    var templateValues = {
+                        'author': 'JP Richardson',
+                        'email': 'jprichardson@gmail.com',
+                        'project-description': 'A cool test for a sweet library.',
+                        'project-name': 'cool_module'
+                    };
+
+                    rock.create(appName, rockRepo, templateValues, this.next);
                 },
                 verifyResults: function() {
                     var outDir = path.join(path.join(testPath, appName));
@@ -73,6 +79,7 @@ describe('rock', function(){
                     AF('README.md');
                     AF('lib/' + projectName + '.js');
                     AF('test/' + projectName + '.test.js');
+                    AF('ignore_this/READTHIS.md');
 
                     assert(!fs.existsSync(path.join(outDir, '.git')));
                     assert(!fs.existsSync(path.join(outDir, '.rock')));

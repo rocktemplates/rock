@@ -1,3 +1,9 @@
+0.1.0 / 2012-08-15
+------------------
+* Git not necessary for Rock located on the local machine. This helps with the programmability aspect.
+* Code cleanup using `BatchFlow` and `readline-prompter`.
+* `rock.create` now can take an input of values so that the the readline prompt doesn't display. Test passing.
+
 0.0.7 / 2012-08-13
 ------------------
 * Fixed bug that prevented rocks without `ignoreDirs` to be created.
