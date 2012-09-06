@@ -1,4 +1,4 @@
-[![build status](https://secure.travis-ci.org/rocktemplates/rock.png)](http://travis-ci.org/rocktemplates/rock)
+
 
 Node.js - rock
 =================
