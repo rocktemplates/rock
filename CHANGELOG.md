@@ -1,3 +1,8 @@
+0.1.1 / 2012-09-06
+------------------
+* Dependencies update.
+* Travis-CI integration.
+
 0.1.0 / 2012-08-15
 ------------------
 * Git not necessary for Rock located on the local machine. This helps with the programmability aspect.

@@ -1,3 +1,5 @@
+[![build status](https://secure.travis-ci.org/rocktemplates/rock.png)](http://travis-ci.org/rocktemplates/rock)
+
 Node.js - rock
 =================
 
@@ -125,5 +127,16 @@ See more rocks at: https://github.com/rocktemplates
 [1]: https://github.com/rocktemplates
 [2]: http://nodejs.org/dist/latest/
 
+
+Author
+------
+
+`rock` was written by [JP Richardson][aboutjp]. You should follow him on Twitter [@jprichardson][twitter]. Also read his coding blog [Procbits][procbits]. If you write software with others, you should checkout [Gitpilot][gitpilot] to make collaboration with Git simple.
+
+
+[aboutjp]: http://about.me/jprichardson
+[twitter]: http://twitter.com/jprichardson
+[procbits]: http://procbits.com
+[gitpilot]: http://gitpilot.com
 
 
