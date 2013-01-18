@@ -7,7 +7,7 @@ var assert = require('assert')
   , rock = require(P('lib/rock'))
   , testutil = require('testutil')
 
-var TEST_PATH = path.join(path.tempdir(), 'test-rock2')
+var TEST_PATH = ''
   , ROCK_CONF = P('test/resources/rockconf.json')
   , rockRepo = P('test/resources/rocks/node-lib');
 
