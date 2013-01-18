@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
-var fnoc = require('fnoc').configs()
-  , P = require('autoresolve')
+var P = require('autoresolve')
   , util = require('util')
   , rock = require(P('lib/rock.js'))
   , path = require('path-extra')
   , fs = require('fs');
 
-var USAGE = util.format("\nRock [%s]: Install project templates.\n", fnoc.package.version);
+var USAGE = util.format("\nRock [%s]: Install project templates.\n", require('../package').version);
     USAGE += "Usage: rock [path] -r [rock]";
 
 var opt = require('optimist')

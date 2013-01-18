@@ -25,7 +25,6 @@
   ],
   "dependencies": {
     "optimist": "0.3.x",
-    "fnoc": "0.1.x",
     "autoresolve": "0.0.x",
     "colors": "0.6.x",
     "hogan.js": "2.0.x",
