@@ -19,49 +19,49 @@ var opt = require('optimist')
 var argv = opt.argv;
 
 
-    var rockConf = null;
-    try {
-        rockConf = JSON.parse(fs.readFileSync(argv.config).toString());
-    } catch (e) {
-        console.error(e);
-    }
+var rockConf = null;
+try {
+  rockConf = JSON.parse(fs.readFileSync(argv.config).toString());
+} catch (e) {
+  console.error(e);
+}
 
-    if (rockConf === null) {
-        console.log('Bad rockConf.')
-    }
+if (rockConf === null) {
+  console.log('Bad rockConf.')
+}
 
-    if (argv.list) {
-        rock.list(rockConf);
-    } else if (argv.update) {
-        rock.update(argv.config);
-        console.log('Updated'); //we need callback error handling here
-    } else if (argv._.length === 1 || argv.rock) {
-        if (argv._.length === 1 && argv.rock) {
-            var rockObj = rockConf.rocks[argv.rock];
-            var repoPath = null;
-            if (rockObj) {
-                repoPath = rockObj.repo;
-            } else {
-                repoPath = argv.rock; //here we are assuming a repo path was passed in instead of a rock name
-            }
-            rock.create(argv._[0], repoPath, function(err){
-                if (err) 
-                    console.log(err);
-                else
-                    console.log('success')
-            });
-        } else {
-            displayHelp();
-        }
+if (argv.list) {
+  rock.list(rockConf);
+} else if (argv.update) {
+  rock.update(argv.config);
+  console.log('Updated'); //we need callback error handling here
+} else if (argv._.length === 1 || argv.rock) {
+  if (argv._.length === 1 && argv.rock) {
+    var rockObj = rockConf.rocks[argv.rock];
+    var repoPath = null;
+    if (rockObj) {
+      repoPath = rockObj.repo;
+    } else {
+      repoPath = argv.rock; //here we are assuming a repo path was passed in instead of a rock name
     }
-    else {
-        displayHelp();
-    }
+    rock.create(argv._[0], repoPath, function(err){
+    if (err) 
+      console.log(err);
+    else
+      console.log('success')
+    });
+  } else {
+    displayHelp();
+  }
+}
+else {
+  displayHelp();
+}
 
 
 function displayHelp(){
-    console.log(opt.help())
-    process.exit();
+  console.log(opt.help())
+  process.exit();
 }
 
 
