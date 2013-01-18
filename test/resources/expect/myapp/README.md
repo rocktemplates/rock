@@ -14,5 +14,5 @@ Installation
 License
 -------
 
-Copyright 2012, JP Richardson <jprichardson@gmail.com>
+Copyright 2013, JP Richardson <jprichardson@gmail.com>
 

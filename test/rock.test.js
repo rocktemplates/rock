@@ -4,18 +4,20 @@ var assert = require('assert')
   , next = require('nextflow')
   , path = require('path-extra')
   , fs = require('fs-extra')
-  , rock = require(P('lib/rock'));
+  , rock = require(P('lib/rock'))
+  , testutil = require('testutil')
 
 var TEST_PATH = path.join(path.tempdir(), 'test-rock2')
-  , ROCK_CONF = P('test/resources/rockconf.json');
+  , ROCK_CONF = P('test/resources/rockconf.json')
+  , rockRepo = P('test/resources/rocks/node-lib');
 
 function AFE(file1, file2) {
-    assert(fs.readFileSync(file1).toString() === fs.readFileSync(file2).toString());
+    T (fs.readFileSync(file1).toString() === fs.readFileSync(file2).toString());
 }
 
 describe('rock', function(){
     beforeEach(function(done){
-        fs.exists(TEST_PATH, function(itDoes) {
+        /*fs.exists(TEST_PATH, function(itDoes) {
             if (itDoes) {
                 fs.remove(TEST_PATH, function(err) {
                     fs.mkdir(TEST_PATH, done);
@@ -23,7 +25,9 @@ describe('rock', function(){
             } else {
                 fs.mkdir(TEST_PATH, done);
             }
-        });
+        });*/
+      TEST_PATH = testutil.createTestDir('rock');
+      done();
     });
 
     after(function() {
@@ -51,7 +55,7 @@ describe('rock', function(){
                     fs.mkdir(testPath, this.next);
                 },
                 rockCreate: function(){
-                    var rockRepo = P('test/resources/rocks/node-lib');
+
                     process.chdir(testPath);
                     
                     var templateValues = {
@@ -91,3 +95,4 @@ describe('rock', function(){
 
     });
 });
+

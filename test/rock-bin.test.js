@@ -8,7 +8,8 @@ var assert = require('assert')
 
 var ROCK_CMD = P('bin/rock')
   , TEST_PATH = path.join(path.tempdir(), 'test-rock')
-  , ROCK_CONF = P('test/resources/rockconf.json');
+  , ROCK_CONF = P('test/resources/rockconf.json')
+  , testRockPath = P('test/resources/rocks/node-lib');
 
 function AFE(file1, file2) {
     assert(fs.readFileSync(file1).toString() === fs.readFileSync(file2).toString());
@@ -40,7 +41,6 @@ describe('rock-bin', function(){
         var appName = 'myapp';
         var projectName = 'cool_module';
 
-        var testRockPath = P('test/resources/rocks/node-lib');
         var rockGitDir = path.join(testRockPath, '.git');
         var cwd = process.cwd();
 
