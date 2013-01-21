@@ -17,6 +17,13 @@ describe('rock', function() {
         GITHUB_TEST(repo, done)
       })
     })
+
+    describe('> when rock is a relative Github HTTP repo', function() {
+      it('should download the files and create the rock', function(done) {
+        var repo = 'rocktemplates/rock-node-lib'
+        GITHUB_TEST(repo, done)
+      })
+    })
   })
 })
 

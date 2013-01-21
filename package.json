@@ -37,7 +37,8 @@
     "fs-extra": "~0.3.2",
     "batchflow": "~0.3.0",
     "nextflow": "~0.3.0",
-    "osenv": "0.0.3"
+    "osenv": "0.0.3",
+    "github-download": "~0.1.0"
   },
   "devDependencies": {
     "mocha": "*",
