@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-var fnoc = require('fnoc').configs()
-  , P = require('autoresolve')
+var P = require('autoresolve')
   , util = require('util')
   , rock = require(P('lib/rock.js'))
-  , path = require('path-extra')
-  , fs = require('fs');
+  , osenv = require('osenv')
+  , fs = require('fs')
+  , path = require('path')
 
-var USAGE = util.format("\nRock [%s]: Install project templates.\n", fnoc.package.version);
+var USAGE = util.format("\nRock [%s]: Install project templates.\n", require('../package').version);
     USAGE += "Usage: rock [path] -r [rock]";
 
 var opt = require('optimist')
@@ -15,7 +15,7 @@ var opt = require('optimist')
   .alias('l', 'list').describe('l', 'show available rocks')
   .alias('r', 'rock').describe('r', 'rock name or repo')
   .alias('u', 'update').describe('u', 'update rock list from official rockconf on Github')
-  .alias('c', 'config').describe('c', 'config file path').default('c', path.join(path.homedir(), '.rock', 'rockconf.json'));
+  .alias('c', 'config').describe('c', 'config file path').default('c', path.join(osenv.home(), '.rock', 'rockconf.json'));
 var argv = opt.argv;
 
 
