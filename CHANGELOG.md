@@ -1,6 +1,12 @@
 0.2.0 / 2013-01-17
 ------------------
 * Updated deps.
+* Removed post-install script.
+* Removed `--update` and `--list` flags.
+* Support installing from Github without Git dependency.
+* Support installing from Github using Github short-hand i.e. username/repo
+* Added default values to skip and prompt.
+* Changed config file name from `rockconf.json` to `rock.conf.json`.
 
 0.1.1 / 2012-09-06
 ------------------

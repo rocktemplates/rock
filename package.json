@@ -1,6 +1,6 @@
 {
   "name": "rock",
-  "version": "0.2.0pre",
+  "version": "0.2.0",
   "description": "Generate file structures or project skeletonsfrom predefined templates.",
   "homepage": [
     "https://github.com/rocktemplates/rock"
@@ -25,11 +25,9 @@
   ],
   "dependencies": {
     "autoresolve": "0.0.x",
-    "colors": "0.6.x",
     "hogan.js": "2.0.x",
     "walker": "1.0.x",
     "tweezers": "0.0.x",
-    "request": "~2.10.0",
     "date-tokens": "0.0.x",
     "readline-prompter": "0.1.x",
     "fs-extra": "~0.3.2",
@@ -46,8 +44,7 @@
   },
   "main": "./lib/rock",
   "scripts": {
-    "test": "mocha test",
-    "postinstall": "node ./scripts/postinstall.js"
+    "test": "mocha test"
   },
   "bin": {
     "rock": "./bin/rock"

@@ -54,29 +54,24 @@ or
 ### Options
 
     Options:
-     -l, --list    show available rocks
-     -r, --rock    rock name or repo   
-     -u, --update  update rock list from official rockconf on Github
-     -c, --config  config file path      [default: "/Users/jp/.rock/rockconf.json"]
+      --version              Print version and exit.
+      -r ROCK, --rock ROCK   The rock path or Github repo.
+      -c, --config           The config file. Defaults to ~/.rock/rock.conf.json
 
-view all rocks in your config file:
-
-    rock --list
-
-update your `rockconf.json` file with the latest Rocks from Github
-
-    rock --update
 
 want to create a project from a rock hosted somewhere else? No problem:
 
     rock myapp -r git@github.com:johndoe/myrepo.git
 
+or use Github shorthand a la [component](https://github.com/component/component)
+
+    rock myapp -r johndoe/myrepo
 
 
 Make Your Own Rocks
 -------------------
 
-It's stupidly simple to make your own rocks. Create a Git repository anywhere. It could be on your filesystem, Github, BitBucket, wherever. Start making template files in this Git repository. Don't forget to commit.
+It's stupidly simple to make your own rocks. Create a Git repository on Github or an empty directory on your filesystem. Start making template files. 
 
 Example (myproject.js):
 
@@ -118,6 +113,31 @@ Why would you do this? Let's say that you're calling rock programmatically and y
 
 
 
+
+rock.conf.json
+--------------
+
+This file defaults to `~/.rock/rock.conf.json`. You can set default values (prompt or skip).
+
+```json
+{
+  "templateValues": {
+    "author": "JP Richardson"
+  },
+  "defaultValues": {
+    "email": "jprichardson@gmail.com"
+  }
+}
+```
+
+So, if you were to run:
+
+    rock myapp -r rocktemplates/node-bin 
+
+it would not prompt you for `author` and it would prompt you for `email` but with a default of `jprichardson@gmail.com`.
+
+
+
 Rocks
 ------
 
@@ -126,6 +146,7 @@ See more rocks at: https://github.com/rocktemplates
 
 [1]: https://github.com/rocktemplates
 [2]: http://nodejs.org/dist/latest/
+
 
 
 Author
