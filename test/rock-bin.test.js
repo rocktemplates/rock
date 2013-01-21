@@ -4,7 +4,7 @@ var assert = require('assert')
   , next = require('nextflow')
   , path = require('path-extra')
   , fs = require('fs-extra')
-  , exec = require('child_process').exec
+  , testutil = require('testutil')
 
 var ROCK_CMD = P('bin/rock')
   , TEST_PATH = path.join(path.tempdir(), 'test-rock')
@@ -16,16 +16,8 @@ function AFE(file1, file2) {
 }
 
 describe('rock-bin', function(){
-  beforeEach(function(done){
-    fs.exists(TEST_PATH, function(itDoes) {
-      if (itDoes) {
-          fs.remove(TEST_PATH, function(err) {
-              fs.mkdir(TEST_PATH, done)
-          })
-      } else {
-          fs.mkdir(TEST_PATH, done)
-      }
-    })
+  beforeEach(function(){
+    TEST_PATH = testutil.createTestDir('rock')
   })
 
   after(function() {
@@ -44,26 +36,10 @@ describe('rock-bin', function(){
 
       next({
         ERROR: function(err) {
-          console.log('ERR')
-          console.log(err)
           done(err) //FAIL
         },
         makeTestDir: function() {
           fs.mkdir(testPath, this.next)
-        },
-        gitInitTestRockRepo: function() {
-          process.chdir(testRockPath)
-          
-          if (fs.existsSync(rockGitDir))
-              fs.removeSync(rockGitDir)
-          
-          exec('git init', this.next)
-        },
-        gitAdd: function() {
-          exec('git add .', this.next)
-        },
-        gitCommit: function() {
-          exec('git commit -am "Initial commit."', this.next)
         },
         executeRock: function(){
           process.chdir(cwd)
@@ -90,15 +66,15 @@ describe('rock-bin', function(){
           var expectDir = P('test/resources/expect/' + appName)
 
           function AF(file) {
-              var file1 = path.join(outDir, file)
-              var file2 = path.join(expectDir, file)
-              AFE(file1, file2)
+            var file1 = path.join(outDir, file)
+            var file2 = path.join(expectDir, file)
+            AFE(file1, file2)
           }
 
           if (fs.existsSync(rockGitDir))
-              fs.removeSync(rockGitDir)
+            fs.removeSync(rockGitDir)
 
-         assert(fs.existsSync(outDir))
+          assert(fs.existsSync(outDir))
 
           AF('LICENSE')
           AF('README.md')

@@ -29,12 +29,10 @@ describe('rock', function(){
 
   describe('+ create()', function(){
     it('should generate a basic project', function(done){
-
       var testPath = path.join(TEST_PATH, 'create')
-      var debugFile = path.join(testPath, 'debug.txt');
-
-      var appName = 'myapp';
-      var projectName = 'cool_module';
+        , debugFile = path.join(testPath, 'debug.txt')
+        , appName = 'myapp'
+        , projectName = 'cool_module';
 
       next({
         ERROR: function(err) {
