@@ -4,7 +4,7 @@ var P = require('autoresolve')
   , util = require('util')
   , rock = require(P('lib/rock.js'))
   , osenv = require('osenv')
-  , fs = require('fs')
+  , fs = require('fs-extra')
   , path = require('path')
   , nom = require('nomnom')
 
@@ -17,11 +17,17 @@ var opts = nom.script('rock')
   .option('version',  {help: 'Print version and exit.', flag: true, callback: function() { return require('../package.json').version }})
   .option('path',     {help: 'Output path of generated directory structure.', position: 0, required: true})
   .option('rock',     {help: 'The rock path or Github repo.', abbr: 'r', metavar: 'ROCK', required: true})
+  .option('config',   {help: 'The config file. Defaults to ~/.rock/rock.conf.json', abbr: 'c', default: path.join(osenv.home(), '.rock', 'rock.conf.json')})
   .parse()
 
 
+var config = {}
+if (fs.existsSync(opts.config)) {
+  config = fs.readJSONFileSync(opts.config)
+}
+
 if (opts.rock) {
-  rock.create(opts.path, opts.rock, function(err){
+  rock.create(opts.path, opts.rock, config, function(err){
     if (err) {
       console.error(err);
       process.exit(1)

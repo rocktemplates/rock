@@ -8,7 +8,7 @@ var assert = require('assert')
 
 var ROCK_CMD = P('bin/rock')
   , TEST_PATH = path.join(path.tempdir(), 'test-rock')
-  , ROCK_CONF = P('test/resources/rockconf.json')
+  , ROCK_CONF = P('test/resources/rock.conf.json')
   , testRockPath = P('test/resources/rocks/node-lib')
 
 function AFE(file1, file2) {
@@ -18,12 +18,6 @@ function AFE(file1, file2) {
 describe('rock-bin', function(){
   beforeEach(function(){
     TEST_PATH = testutil.createTestDir('rock')
-  })
-
-  after(function() {
-    var conf = JSON.parse(fs.readFileSync(ROCK_CONF))
-    conf.rocks['node-lib'].repo = ''
-    fs.writeFileSync(ROCK_CONF, JSON.stringify(conf, null, 4))
   })
 
   it('should generate a basic project', function(done){
@@ -44,13 +38,8 @@ describe('rock-bin', function(){
         executeRock: function(){
           process.chdir(cwd)
 
-          var rockConfigPath = ROCK_CONF
-          var rockConf = JSON.parse(fs.readFileSync(rockConfigPath).toString())
-          rockConf.rocks['node-lib'].repo = testRockPath
-          fs.writeFileSync(rockConfigPath, JSON.stringify(rockConf, null, 4))
-
           process.chdir(testPath)
-          suppose(ROCK_CMD, [appName, '-r', P('test/resources/rocks/node-lib')])
+          suppose(ROCK_CMD, [appName, '-c', ROCK_CONF, '-r', P('test/resources/rocks/node-lib')])
             //.debug(process.stdout)
             .on('author: ').respond('JP Richardson\n')
             .on('email: ').respond('jprichardson@gmail.com\n')

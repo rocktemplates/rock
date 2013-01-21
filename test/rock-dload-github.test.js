@@ -36,7 +36,7 @@ function GITHUB_TEST (repo, done) {
     'package-name': 'cool_module'
   }
 
-  rock.create(TEST_DIR, repo, templateValues, function(err) {
+  rock.create(TEST_DIR, repo, {templateValues: templateValues}, function(err) {
     if (err) return done(err)
 
     T (fs.existsSync(path.join(TEST_DIR, 'CHANGELOG.md')))

@@ -21,12 +21,6 @@ describe('rock', function(){
     done()
   })
 
-  after(function() {
-    var conf = JSON.parse(fs.readFileSync(ROCK_CONF));
-    conf.rocks['node-lib'].repo = '';
-    fs.writeFileSync(ROCK_CONF, JSON.stringify(conf, null, 4));
-  });
-
   describe('+ create()', function(){
     it('should generate a basic project', function(done){
       var testPath = path.join(TEST_PATH, 'create')
@@ -51,7 +45,7 @@ describe('rock', function(){
             'project-name': 'cool_module'
           };
 
-          rock.create(appName, rockRepo, templateValues, this.next);
+          rock.create(appName, rockRepo, {templateValues: templateValues}, this.next);
         },
         verifyResults: function() {
           var outDir = path.join(path.join(testPath, appName));
