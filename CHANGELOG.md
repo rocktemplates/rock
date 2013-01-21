@@ -1,4 +1,4 @@
-0.2.0 / 2013-01-17
+0.2.0 / 2013-01-21
 ------------------
 * Updated deps.
 * Removed post-install script.
