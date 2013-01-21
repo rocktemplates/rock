@@ -6,62 +6,29 @@ var P = require('autoresolve')
   , osenv = require('osenv')
   , fs = require('fs')
   , path = require('path')
-
-var USAGE = util.format("\nRock [%s]: Install project templates.\n", require('../package').version);
-    USAGE += "Usage: rock [path] -r [rock]";
-
-var opt = require('optimist')
-  .usage(USAGE)
-  .alias('l', 'list').describe('l', 'show available rocks')
-  .alias('r', 'rock').describe('r', 'rock name or repo')
-  .alias('u', 'update').describe('u', 'update rock list from official rockconf on Github')
-  .alias('c', 'config').describe('c', 'config file path').default('c', path.join(osenv.home(), '.rock', 'rockconf.json'));
-var argv = opt.argv;
+  , nom = require('nomnom')
 
 
-var rockConf = null;
-try {
-  rockConf = JSON.parse(fs.readFileSync(argv.config).toString());
-} catch (e) {
-  console.error(e);
-}
+/*program.version(require('../package.json').version)
+  .option('-r, --rock [rock]', 'The rock path or Github repo.')
+  .parse(process.argv)*/
 
-if (rockConf === null) {
-  console.log('Bad rockConf.')
-}
+var opts = nom.script('rock')
+  .option('version',  {help: 'Print version and exit.', flag: true, callback: function() { return require('../package.json').version }})
+  .option('path',     {help: 'Output path of generated directory structure.', position: 0, required: true})
+  .option('rock',     {help: 'The rock path or Github repo.', abbr: 'r', metavar: 'ROCK', required: true})
+  .parse()
 
-if (argv.list) {
-  rock.list(rockConf);
-} else if (argv.update) {
-  rock.update(argv.config);
-  console.log('Updated'); //we need callback error handling here
-} else if (argv._.length === 1 || argv.rock) {
-  if (argv._.length === 1 && argv.rock) {
-    var rockObj = rockConf.rocks[argv.rock];
-    var repoPath = null;
-    if (rockObj) {
-      repoPath = rockObj.repo;
-    } else {
-      repoPath = argv.rock; //here we are assuming a repo path was passed in instead of a rock name
+
+if (opts.rock) {
+  rock.create(opts.path, opts.rock, function(err){
+    if (err) {
+      console.error(err);
+      process.exit(1)
     }
-    rock.create(argv._[0], repoPath, function(err){
-    if (err) 
-      console.log(err);
-    else
-      console.log('success')
-    });
-  } else {
-    displayHelp();
-  }
-}
-else {
-  displayHelp();
+  })
 }
 
 
-function displayHelp(){
-  console.log(opt.help())
-  process.exit();
-}
 
 

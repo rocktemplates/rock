@@ -24,7 +24,6 @@
     }
   ],
   "dependencies": {
-    "optimist": "0.3.x",
     "autoresolve": "0.0.x",
     "colors": "0.6.x",
     "hogan.js": "2.0.x",
@@ -37,7 +36,8 @@
     "batchflow": "~0.3.0",
     "nextflow": "~0.3.0",
     "osenv": "0.0.3",
-    "github-download": "~0.1.0"
+    "github-download": "~0.1.0",
+    "nomnom": "~1.5.2"
   },
   "devDependencies": {
     "mocha": "*",

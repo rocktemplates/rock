@@ -12,7 +12,7 @@ var ROCK_CMD = P('bin/rock')
   , testRockPath = P('test/resources/rocks/node-lib')
 
 function AFE(file1, file2) {
-  assert(fs.readFileSync(file1).toString() === fs.readFileSync(file2).toString())
+  T (fs.readFileSync(file1).toString() === fs.readFileSync(file2).toString())
 }
 
 describe('rock-bin', function(){
@@ -50,7 +50,7 @@ describe('rock-bin', function(){
           fs.writeFileSync(rockConfigPath, JSON.stringify(rockConf, null, 4))
 
           process.chdir(testPath)
-          suppose(ROCK_CMD, [appName, '-c', rockConfigPath, '-r', 'node-lib'])
+          suppose(ROCK_CMD, [appName, '-r', P('test/resources/rocks/node-lib')])
             //.debug(process.stdout)
             .on('author: ').respond('JP Richardson\n')
             .on('email: ').respond('jprichardson@gmail.com\n')
@@ -60,7 +60,7 @@ describe('rock-bin', function(){
             .end(this.next)
         },
         verifyResults: function(code) {
-          assert(code === 0)
+          T (code === 0)
 
           var outDir = path.join(path.join(testPath, appName))
           var expectDir = P('test/resources/expect/' + appName)
@@ -82,8 +82,8 @@ describe('rock-bin', function(){
           AF('test/' + projectName + '.test.js')
           AF('ignore_this/READTHIS.md')
 
-          assert(!fs.existsSync(path.join(outDir, '.git')))
-          assert(!fs.existsSync(path.join(outDir, '.rock')))
+          T (!fs.existsSync(path.join(outDir, '.git')))
+          T (!fs.existsSync(path.join(outDir, '.rock')))
 
           done()
         }
