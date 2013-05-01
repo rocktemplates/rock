@@ -29,18 +29,18 @@
     "walker": "1.0.x",
     "tweezers": "0.0.x",
     "date-tokens": "0.0.x",
-    "readline-prompter": "0.1.x",
+    "readline-prompter": "~0.2.0",
     "fs-extra": "~0.3.2",
-    "batchflow": "~0.3.0",
+    "batchflow": "~0.4.0",
     "nextflow": "~0.3.0",
     "osenv": "0.0.3",
-    "github-download": "~0.1.0",
+    "github-download": "~0.2.0",
     "nomnom": "~1.5.2"
   },
   "devDependencies": {
     "mocha": "*",
-    "testutil": "~0.4.0",
-    "suppose": "0.0.x"
+    "testutil": "~0.5.1",
+    "suppose": "~0.2.0"
   },
   "main": "./lib/rock",
   "scripts": {
