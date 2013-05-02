@@ -21,7 +21,7 @@ describe('rock', function(){
     done()
   })
 
-  describe('+ create()', function(){
+  describe('+ fetchRepo()', function(){
     it('should generate a basic project', function(done){
       var testPath = path.join(TEST_PATH, 'create')
         , debugFile = path.join(testPath, 'debug.txt')
@@ -45,7 +45,7 @@ describe('rock', function(){
             'project-name': 'cool_module'
           };
 
-          rock.create(appName, rockRepo, {templateValues: templateValues}, this.next);
+          rock.fetchRepo(appName, rockRepo, {templateValues: templateValues}, this.next);
         },
         verifyResults: function() {
           var outDir = path.join(path.join(testPath, appName));

@@ -1,3 +1,9 @@
+0.3.0 / 2013-05-02
+------------------
+* added `cl` dep
+* updated deps
+* renamed `create()` to `fetchRepo()`
+
 0.2.0 / 2013-01-21
 ------------------
 * Updated deps.
