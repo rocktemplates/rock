@@ -13,14 +13,14 @@ describe('rock', function() {
   describe('+ create', function() {
     describe('> when rock is an absolute Github HTTP repo', function() {
       it('should download the files and create the rock', function(done) {
-        var repo = 'https://github.com/rocktemplates/rock-node-lib'
+        var repo = 'https://github.com/rocktemplates/node-lib'
         GITHUB_TEST(repo, done)
       })
     })
 
     describe('> when rock is a relative Github HTTP repo', function() {
       it('should download the files and create the rock', function(done) {
-        var repo = 'rocktemplates/rock-node-lib'
+        var repo = 'rocktemplates/node-lib'
         GITHUB_TEST(repo, done)
       })
     })
