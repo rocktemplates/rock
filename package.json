@@ -31,7 +31,7 @@
     "tweezers": "~0.1.0",
     "date-tokens": "0.0.x",
     "readline-prompter": "~0.2.0",
-    "fs-extra": "~0.3.2",
+    "fs-extra": "~0.6.0",
     "batchflow": "~0.4.0",
     "nextflow": "~0.3.0",
     "osenv": "0.0.3",
