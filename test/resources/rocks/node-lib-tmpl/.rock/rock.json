@@ -1,0 +1,13 @@
+{
+    "name": "node-lib",
+    "description": "Barebones Node.js project.",
+    "scripts": {
+        "before": ["hi.sh"], 
+        "after": ["bye.js"]
+    },
+    "ignoreDirs": ["./ignore_this"],
+  "tokens": {
+    "open": "@@",
+    "close": "@@"
+  }
+}
