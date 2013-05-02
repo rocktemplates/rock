@@ -3,15 +3,15 @@
 Node.js - rock
 =================
 
-Rock generates and scaffolds file structures or project skeletons from templates. You can find a list of all of the templates on the [Github rocktemplates page][1].
+Rock generates file structures or project skeletons based off of predefined templates. You can find a list of all of the templates on the [Github rocktemplates page][1].
 
 
 Why?
 ----
 
-Do you constantly find yourself writing a lot of new libraries for Node.js and have to create the `package.json`, `README`, `LICENSE`, `lib/`, `test/` files over and over again? Well, I did. Sometimes I was writing JavaScript libraries or CoffeeScript apps. But over and over I was getting annoyed at having to create the same file structure over and over again.
+Do you constantly finding yourself writing a lot of new libraries for Node.js and having to create the `package.json`, `README`, `LICENSE`, `lib/`, `test/` files over and over again? Well, I did. Sometimes I was writing JavaScript libraries or CoffeeScript apps. But over and over I was getting annoyed of having to create the same file structure over and over again.
 
-I stumbled upon a few solutions, but they all seem to do more than just generate a file structure from a template. That's all I wanted. Oh, and I wanted it to be programmatic too. So, if I wanted to build a blogging engine or another Rails clone in JS, I could leverage `rock` to generate the files.
+I stumbled upon a few solutions, but they all seem to do more than just generate a file structure from a template. That's all I wanted. Oh, and I wanted it to be programmatic too. So, if I wanted to build a blogging engine or another Rails clone in JS, I could leverage `rock` to generate the empty templates.
 
 As it stands now, `rock` is written in Node.js. But the actual templates themselves could be for any language.
 
@@ -26,13 +26,15 @@ After you have installed Node.js and npm, you can install rock by running the fo
 
     npm install -g rock
 
-Don't forget the **-g** flag. This will ensure that the `rock` command is available system-wide.
+Don't forget the **-g** flag. This will ensure that the `rock` command is available system wide.
 
+**Note:**
+At this time, `rock` requires `git` to be installed. This is because all the templates are hosted on Github. Since Github also provides tarballs and zipballs, this requirement will change soon.
 
 
 ### After Install
 
-After install, `rock` will create the file `rock.conf.json` in your `~/.rock/` directory. 
+After install, `rock` will create the file `rockconf.json` in your `~/.rock/` directory. You can modify this file to include additional repositories if you like.
 
 
 
@@ -66,27 +68,22 @@ or use Github shorthand a la [component](https://github.com/component/component)
     rock myapp -r johndoe/myrepo
 
 
-
 Make Your Own Rocks
 -------------------
 
 It's stupidly simple to make your own rocks. Create a Git repository on Github or an empty directory on your filesystem. Start making template files. 
 
-Rock use to default to the template tokens with `{{` and `}}`, e.g. `{{email}}`. The default **HAS NOW CHANGED** to **@@** and **@@**, e.g. `@@email@@`. The
-reason for this is because in a lot of my projects I actually use the templates `{{` and `}}` for Mustache or Handlebars.js, I don't want rock to mess with `em.
-Tokens starting and ending with `@@` stand out and won't interfere with anything else.
-
 Example (myproject.js):
 
 ```javascript
 /*
-   Author: @@author@@ <@@email@@>
+   Author: {{author}} <{{email}}>
    File: {{file}}
    Created: {{date}}
 */
 
 function main() {
-	
+  
 }
 ```
 
@@ -114,18 +111,22 @@ In your rock repo, add a file `.rock/rock.json`. Add the following:
 
 Why would you do this? Let's say that you're calling rock programmatically and you don't want rock to prompt you for any tokens because you are going to use Mustache/Hogan/Handlebars in your own code.
 
+
 ### Open / Close Templates
 
-If you don't want to use the default `@@` and want to back to using `{{` and `}}`, you can configure this behavior for your Rock:
+If you don't want to use the default `{{` and `}}` and want to use something else, you can configure this behavior for your Rock:
 
 ```json
 {
   "tokens": {
-    "open": "{{",
-    "close": "}}"
+    "open": "#{",
+    "close": "}"
   }
 }
 ```
+
+You may want to do this if you  generate files that actually use Mustache templates.
+
 
 
 
@@ -152,33 +153,25 @@ So, if you were to run:
 it would not prompt you for `author` and it would prompt you for `email` but with a default of `jprichardson@gmail.com`.
 
 
-### Open / Close Templates
-
-If the rock repo doesn't specify the `open` and `close` and it doesn't use the defaults, you can specify the settings here to use for any
-rock that doesn't explicitely define `open` and `close`.
-
-```json
-{
-  "tokens": {
-    "open": "{{",
-    "close": "}}"
-  }
-}
-```
-
 
 Rocks
 ------
 
-See more rocks at: https://github.com/rocktemplates
+See more rocks at: https://github.com/rocktemplates or browse 3rd party Rocks here: https://github.com/rocktemplates/rock/wiki/rocks
+
+
+[1]: https://github.com/rocktemplates
+[2]: http://nodejs.org/dist/latest/
 
 
 
 Roadmap to v1.0.0
------------------
+------------------
+
 - Will probably change configuration from JSON to [TOML](https://github.com/mojombo/toml). TOML needs to
 achieve stability first.
 - Create/fork site similar to [component.io](http://component.io/)
+
 
 
 License
@@ -189,15 +182,8 @@ License
 Copyright (c) 2012-2013, JP Richardson
 
 
-
-
-[1]: https://github.com/rocktemplates
-[2]: http://nodejs.org/dist/latest/
-
-
-
-
-
-
-
+[aboutjp]: http://about.me/jprichardson
+[twitter]: http://twitter.com/jprichardson
+[procbits]: http://procbits.com
+[gitpilot]: http://gitpilot.com
 
