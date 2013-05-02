@@ -28,7 +28,7 @@
     "autoresolve": "0.0.x",
     "hogan.js": "2.0.x",
     "walker": "1.0.x",
-    "tweezers": "0.0.x",
+    "tweezers": "~0.1.0",
     "date-tokens": "0.0.x",
     "readline-prompter": "~0.2.0",
     "fs-extra": "~0.3.2",
