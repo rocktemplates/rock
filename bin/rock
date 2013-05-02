@@ -28,10 +28,7 @@ if (fs.existsSync(opts.config)) {
 
 if (opts.rock) {
   rock.create(opts.path, opts.rock, config, function(err){
-    if (err) {
-      console.error(err);
-      process.exit(1)
-    }
+    if (err) cl.exit(1, err)
   })
 }
 

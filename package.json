@@ -1,7 +1,7 @@
 {
   "name": "rock",
   "version": "0.2.0",
-  "description": "Generate file structures or project skeletonsfrom predefined templates.",
+  "description": "Generate and scaffold file structures or project skeletons from templates.",
   "homepage": [
     "https://github.com/rocktemplates/rock"
   ],
@@ -14,7 +14,8 @@
     "foundation",
     "skeleton",
     "generate",
-    "template"
+    "template",
+    "scaffold"
   ],
   "author": "JP Richardson <jprichardson@gmail.com>",
   "licenses": [
@@ -35,7 +36,8 @@
     "nextflow": "~0.3.0",
     "osenv": "0.0.3",
     "github-download": "~0.2.0",
-    "nomnom": "~1.5.2"
+    "nomnom": "~1.5.2",
+    "cl": "0.0.1"
   },
   "devDependencies": {
     "mocha": "*",
