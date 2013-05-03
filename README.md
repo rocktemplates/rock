@@ -129,6 +129,40 @@ You may want to do this if you  generate files that actually use Mustache templa
 
 
 
+Single File Rocks
+-----------------
+
+Rock doesn't need to be used with just whole repos. It can be used with individual files as well.
+
+**Example:**
+
+**http://localhost/data.txt**:
+```
+Hi, @@author@@ is going to build:
+@@project-name@@.
+```
+
+command:
+
+    rock /tmp/outputfile.txt -f --topen '@@' --tclose '@@' -r http://localhost/data.txt
+
+
+prompts:
+
+```
+author: JP
+project-name: Rock
+```
+
+output:
+
+**/tmp/outputfile.txt**:
+```
+Hi, JP is going to build:
+Rock
+```
+
+
 
 rock.conf.json
 --------------

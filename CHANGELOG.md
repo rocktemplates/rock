@@ -3,6 +3,8 @@
 * added `cl` dep
 * updated deps
 * renamed `create()` to `fetchRepo()`
+* added ability to download single files
+* added rudimentary support for other templates
 
 0.2.0 / 2013-01-21
 ------------------
