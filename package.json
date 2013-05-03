@@ -44,7 +44,8 @@
     "mocha": "*",
     "testutil": "~0.5.1",
     "suppose": "~0.2.0",
-    "nock": "~0.18.0"
+    "nock": "~0.18.0",
+    "path-extra": "~0.1.0"
   },
   "main": "./lib/rock",
   "scripts": {
