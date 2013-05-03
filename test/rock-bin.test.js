@@ -1,5 +1,4 @@
-var assert = require('assert')
-  , P = require('autoresolve')
+var P = require('autoresolve')
   , suppose = require('suppose')
   , next = require('nextflow')
   , path = require('path-extra')
@@ -7,7 +6,7 @@ var assert = require('assert')
   , testutil = require('testutil')
 
 var ROCK_CMD = P('bin/rock')
-  , TEST_PATH = path.join(path.tempdir(), 'test-rock')
+  , TEST_PATH = null
   , ROCK_CONF = P('test/resources/rock.conf.json')
   , testRockPath = P('test/resources/rocks/node-lib')
 
@@ -63,7 +62,7 @@ describe('rock-bin', function(){
           if (fs.existsSync(rockGitDir))
             fs.removeSync(rockGitDir)
 
-          assert(fs.existsSync(outDir))
+          T (fs.existsSync(outDir))
 
           AF('LICENSE')
           AF('README.md')

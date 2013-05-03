@@ -10,7 +10,7 @@ describe('rock', function() {
     TEST_DIR = testutil.createTestDir('rock')
   })
 
-  describe('+ create', function() {
+  describe('+ fetchRepo()', function() {
     describe('> when rock is an absolute Github HTTP repo', function() {
       it('should download the files and create the rock', function(done) {
         var repo = 'https://github.com/rocktemplates/node-lib'
@@ -36,7 +36,7 @@ function GITHUB_TEST (repo, done) {
     'package-name': 'cool_module'
   }
 
-  rock.create(TEST_DIR, repo, {templateValues: templateValues}, function(err) {
+  rock.fetchRepo(TEST_DIR, repo, {templateValues: templateValues}, function(err) {
     if (err) return done(err)
 
     T (fs.existsSync(path.join(TEST_DIR, 'CHANGELOG.md')))

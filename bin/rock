@@ -18,6 +18,9 @@ var opts = nom.script('rock')
   .option('path',     {help: 'Output path of generated directory structure.', position: 0, required: true})
   .option('rock',     {help: 'The rock path or Github repo.', abbr: 'r', metavar: 'ROCK', required: true})
   .option('config',   {help: 'The config file. Defaults to ~/.rock/rock.conf.json', abbr: 'c', default: path.join(osenv.home(), '.rock', 'rock.conf.json')})
+  .option('file',     {help: 'If the rock is a single file. Supports http as well.', abbr: 'f', flag: true, default: false} )
+  .option('topen',    {help: 'Opening template value. Defaults to {{', default: '{{'})
+  .option('tclose',   {help: 'Closing template value. Defaults to }}', default: '}}'})
   .parse()
 
 
@@ -26,8 +29,18 @@ if (fs.existsSync(opts.config)) {
   config = fs.readJSONFileSync(opts.config)
 }
 
-if (opts.rock) {
+if (opts.rock && !opts.file) {
   rock.fetchRepo(opts.path, opts.rock, config, function(err){
+    if (err) cl.exit(1, err)
+  })
+}
+
+if (opts.rock && opts.file) {
+  if (opts.topen && opts.tclose) {
+    config.tokens = {open: topen, close: tclose}
+  }
+
+  rock.fetchFile(opts.path, opts.rock, config, function(err) {
     if (err) cl.exit(1, err)
   })
 }
