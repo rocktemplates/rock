@@ -7,6 +7,7 @@ var P = require('autoresolve')
   , fs = require('fs-extra')
   , path = require('path')
   , nom = require('nomnom')
+  , cl = require('cl')
 
 
 /*program.version(require('../package.json').version)
