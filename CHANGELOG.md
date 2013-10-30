@@ -1,3 +1,8 @@
+0.3.1 / 2013-10-30
+------------------
+* removed `preferGlobal`
+* added `cl` require to `rock` bin (tayler / #10)
+
 0.3.0 / 2013-05-02
 ------------------
 * added `cl` dep
