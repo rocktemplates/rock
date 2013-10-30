@@ -207,6 +207,12 @@ achieve stability first.
 - Create/fork site similar to [component.io](http://component.io/)
 
 
+Contributors
+------------
+
+- (*) [JP Richardson](http://github.com/jprichardson)
+- (1) [Tayler Summers](https://github.com/taylers)
+
 
 License
 -------
