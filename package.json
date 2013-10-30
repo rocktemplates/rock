@@ -1,7 +1,7 @@
 {
   "name": "rock",
   "version": "0.3.1",
-  "description": "Generate and scaffold file structures or project skeletons from templates."
+  "description": "Generate and scaffold file structures or project skeletons from templates.",
   "repository": {
     "type": "git",
     "url": "https://github.com/rocktemplates/rock"
