@@ -38,7 +38,7 @@ if (opts.rock && !opts.file) {
 
 if (opts.rock && opts.file) {
   if (opts.topen && opts.tclose) {
-    config.tokens = {open: topen, close: tclose}
+    config.tokens = {open: opts.topen, close: opts.tclose}
   }
 
   rock.fetchFile(opts.path, opts.rock, config, function(err) {
