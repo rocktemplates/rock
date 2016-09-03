@@ -15,12 +15,7 @@
     "scaffold"
   ],
   "author": "JP Richardson <jprichardson@gmail.com>",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/rocktemplates/rock/raw/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "dependencies": {
     "autoresolve": "0.0.x",
     "walker": "1.0.x",
