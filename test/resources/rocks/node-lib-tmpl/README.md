@@ -15,4 +15,3 @@ License
 -------
 
 Copyright @@date-year@@, @@author@@ <@@email@@>
-
