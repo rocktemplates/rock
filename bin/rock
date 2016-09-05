@@ -45,7 +45,3 @@ if (opts.rock && opts.file) {
     if (err) cl.exit(1, err)
   })
 }
-
-
-
-

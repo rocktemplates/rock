@@ -53,7 +53,7 @@ function TEST (rockRepo, done) {
     },
     rockCreate: function(){
       process.chdir(testPath);
-        
+
       var templateValues = {
         'author': 'JP Richardson',
         'email': 'jprichardson@gmail.com',
