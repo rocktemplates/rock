@@ -33,16 +33,20 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "testutil": "~0.5.1",
-    "suppose": "~0.2.0",
     "nock": "~0.18.0",
-    "path-extra": "~0.1.0"
+    "path-extra": "~0.1.0",
+    "standard": "^8.0.0",
+    "suppose": "~0.2.0",
+    "testutil": "~0.5.1"
   },
   "main": "./lib/rock",
   "scripts": {
-    "test": "mocha test"
+    "test": "standard && mocha test"
   },
   "bin": {
     "rock": "./bin/rock"
+  },
+  "standard": {
+    "globals": [ "T", "F", "EQ", "NEQ", "APPROX", "THROWS" ]
   }
 }
