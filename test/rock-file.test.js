@@ -1,5 +1,4 @@
 var P = require('autoresolve')
-  , next = require('nextflow')
   , path = require('path-extra')
   , fs = require('fs-extra')
   , rock = require(P('lib/rock'))

@@ -1,7 +1,6 @@
 var assert = require('assert')
   , P = require('autoresolve')
   , suppose = require('suppose')
-  , next = require('nextflow')
   , path = require('path-extra')
   , fs = require('fs-extra')
   , rock = require(P('lib/rock'))
@@ -44,47 +43,42 @@ function TEST (rockRepo, done) {
     , appName = 'myapp'
     , projectName = 'cool_module';
 
-  next({
-    ERROR: function(err) {
-      done(err); //FAIL
-    },
-    makeTestDir: function() {
-      fs.mkdir(testPath, this.next);
-    },
-    rockCreate: function(){
-      process.chdir(testPath);
+  // Make test dir:
+  fs.mkdir(testPath, rockCreate);
+  function rockCreate(){
+    process.chdir(testPath);
 
-      var templateValues = {
-        'author': 'JP Richardson',
-        'email': 'jprichardson@gmail.com',
-        'project-description': 'A cool test for a sweet library.',
-        'project-name': 'cool_module'
-      };
+    var templateValues = {
+      'author': 'JP Richardson',
+      'email': 'jprichardson@gmail.com',
+      'project-description': 'A cool test for a sweet library.',
+      'project-name': 'cool_module'
+    };
 
-      rock.fetchRepo(appName, rockRepo, {templateValues: templateValues}, this.next);
-    },
-    verifyResults: function() {
-      var outDir = path.join(path.join(testPath, appName));
-      var expectDir = P('test/resources/expect/' + appName);
+    rock.fetchRepo(appName, rockRepo, {templateValues: templateValues}, verifyResults);
+  }
+  function verifyResults(err) {
+    if (err) done(err)
+    var outDir = path.join(path.join(testPath, appName));
+    var expectDir = P('test/resources/expect/' + appName);
 
-      function AF(file) {
-        var file1 = path.join(outDir, file);
-        var file2 = path.join(expectDir, file);
-        AFE(file1, file2);
-      }
-
-      assert(fs.existsSync(outDir));
-
-      AF('LICENSE');
-      AF('README.md');
-      AF('lib/' + projectName + '.js');
-      AF('test/' + projectName + '.test.js');
-      AF('ignore_this/READTHIS.md');
-
-      assert(!fs.existsSync(path.join(outDir, '.git')));
-      assert(!fs.existsSync(path.join(outDir, '.rock')));
-
-      done()
+    function AF(file) {
+      var file1 = path.join(outDir, file);
+      var file2 = path.join(expectDir, file);
+      AFE(file1, file2);
     }
-  });
+
+    assert(fs.existsSync(outDir));
+
+    AF('LICENSE');
+    AF('README.md');
+    AF('lib/' + projectName + '.js');
+    AF('test/' + projectName + '.test.js');
+    AF('ignore_this/READTHIS.md');
+
+    assert(!fs.existsSync(path.join(outDir, '.git')));
+    assert(!fs.existsSync(path.join(outDir, '.rock')));
+
+    done()
+  }
 }

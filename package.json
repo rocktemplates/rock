@@ -24,7 +24,6 @@
     "readline-prompter": "~0.2.0",
     "fs-extra": "~0.6.0",
     "batchflow": "~0.4.0",
-    "nextflow": "~0.3.0",
     "osenv": "0.0.3",
     "github-download": "~0.2.0",
     "nomnom": "~1.5.2",
