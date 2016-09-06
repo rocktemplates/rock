@@ -71,7 +71,7 @@ or use Github shorthand a la [component](https://github.com/component/component)
 Make Your Own Rocks
 -------------------
 
-It's stupidly simple to make your own rocks. Create a Git repository on Github or an empty directory on your filesystem. Start making template files. 
+It's stupidly simple to make your own rocks. Create a Git repository on Github or an empty directory on your filesystem. Start making template files.
 
 Example (myproject.js):
 
@@ -83,7 +83,7 @@ Example (myproject.js):
 */
 
 function main() {
-  
+
 }
 ```
 
@@ -182,7 +182,7 @@ This file defaults to `~/.rock/rock.conf.json`. You can set default values (prom
 
 So, if you were to run:
 
-    rock myapp -r rocktemplates/node-bin 
+    rock myapp -r rocktemplates/node-bin
 
 it would not prompt you for `author` and it would prompt you for `email` but with a default of `jprichardson@gmail.com`.
 
@@ -226,4 +226,3 @@ Copyright (c) 2012-2013, JP Richardson
 [twitter]: http://twitter.com/jprichardson
 [procbits]: http://procbits.com
 [gitpilot]: http://gitpilot.com
-

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var P = require('autoresolve')
-  , util = require('util')
   , rock = require(P('lib/rock.js'))
   , osenv = require('osenv')
   , fs = require('fs-extra')
@@ -45,7 +44,3 @@ if (opts.rock && opts.file) {
     if (err) cl.exit(1, err)
   })
 }
-
-
-
-
