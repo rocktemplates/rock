@@ -5,6 +5,7 @@ var path = require('path-extra')
 var fs = require('fs-extra')
 var rock = require(P('lib/rock'))
 var testutil = require('testutil')
+require('terst')
 
 var TEST_PATH = ''
 

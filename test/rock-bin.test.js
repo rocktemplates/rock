@@ -4,6 +4,7 @@ var suppose = require('suppose')
 var path = require('path-extra')
 var fs = require('fs-extra')
 var testutil = require('testutil')
+require('terst')
 
 var ROCK_CMD = P('bin/rock')
 var TEST_PATH = null
@@ -34,11 +35,11 @@ describe('rock-bin', function () {
       process.chdir(testPath)
       suppose(ROCK_CMD, [appName, '-c', ROCK_CONF, '-r', P('test/resources/rocks/node-lib')])
           // .debug(process.stdout)
-          .on('author: ').respond('JP Richardson\n')
-          .on('email: ').respond('jprichardson@gmail.com\n')
-          .on('project-description: ').respond('A cool test for a sweet library.\n')
-          .on('project-name: ').respond(projectName + '\n')
-          .error(done)
+          .when('author: ').respond('JP Richardson\n')
+          .when('email: ').respond('jprichardson@gmail.com\n')
+          .when('project-description: ').respond('A cool test for a sweet library.\n')
+          .when('project-name: ').respond(projectName + '\n')
+          .on('error', done)
           .end(verifyResults)
     }
     function verifyResults (code) {
