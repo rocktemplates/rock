@@ -3,6 +3,7 @@ var testutil = require('testutil')
 var rock = require('../lib/rock')
 var fs = require('fs')
 var path = require('path')
+require('terst')
 
 var TEST_DIR = ''
 

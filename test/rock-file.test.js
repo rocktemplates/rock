@@ -5,6 +5,7 @@ var fs = require('fs-extra')
 var rock = require(P('lib/rock'))
 var testutil = require('testutil')
 var nock = require('nock')
+require('terst')
 
 var TEST_DIR = null
 
