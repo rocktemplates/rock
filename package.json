@@ -18,18 +18,19 @@
   "license": "MIT",
   "dependencies": {
     "autoresolve": "0.0.x",
-    "walker": "1.0.x",
-    "tweezers": "~0.1.0",
-    "date-tokens": "0.0.x",
-    "readline-prompter": "~0.2.0",
-    "fs-extra": "^0.30.0",
     "batchflow": "~0.4.0",
-    "osenv": "^0.1.3",
-    "github-download": "^0.5.0",
-    "nomnom": "^1.8.1",
     "cl": "0.0.1",
+    "date-tokens": "0.0.x",
+    "fs-extra": "^0.30.0",
+    "github-download": "^0.5.0",
+    "globby": "^6.0.0",
+    "nomnom": "^1.8.1",
+    "osenv": "^0.1.3",
+    "readline-prompter": "~0.2.0",
     "string": "^3.3.1",
-    "superagent": "~0.14.1"
+    "superagent": "~0.14.1",
+    "tweezers": "~0.1.0",
+    "walker": "1.0.x"
   },
   "devDependencies": {
     "mocha": "*",
