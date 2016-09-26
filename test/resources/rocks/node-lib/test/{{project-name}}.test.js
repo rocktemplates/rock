@@ -1,4 +1,4 @@
 /*
     Copyright {{author}} <{{email}}>
-    File: {{file}}
+    File: {{-file}}
 */
