@@ -15,14 +15,14 @@ describe('rock', function () {
   describe('+ fetchRepo()', function () {
     describe('> when rock is an absolute Github HTTP repo', function () {
       it('should download the files and create the rock', function (done) {
-        var repo = 'https://github.com/rocktemplates/node-lib'
+        var repo = 'https://github.com/rocktemplates/rock-test'
         GITHUB_TEST(repo, done)
       })
     })
 
     describe('> when rock is a relative Github HTTP repo', function () {
       it('should download the files and create the rock', function (done) {
-        var repo = 'rocktemplates/node-lib'
+        var repo = 'rocktemplates/rock-test'
         GITHUB_TEST(repo, done)
       })
     })
@@ -31,26 +31,13 @@ describe('rock', function () {
 
 function GITHUB_TEST (repo, done) {
   var templateValues = {
-    'author': 'JP Richardson',
-    'email': 'jprichardson@gmail.com',
-    'project-description': 'A cool test for a sweet library.',
-    'project-name': 'cool_module',
-    'package-name': 'cool_module'
+    name: 'John'
   }
 
   rock.fetchRepo(TEST_DIR, repo, {templateValues: templateValues}, function (err) {
     if (err) return done(err)
 
-    T(fs.existsSync(path.join(TEST_DIR, 'CHANGELOG.md')))
-    T(fs.existsSync(path.join(TEST_DIR, 'LICENSE')))
-    T(fs.existsSync(path.join(TEST_DIR, 'README.md')))
-    T(fs.existsSync(path.join(TEST_DIR, 'lib')))
-    T(fs.existsSync(path.join(TEST_DIR, 'package.json')))
-    T(fs.existsSync(path.join(TEST_DIR, 'test')))
-    T(fs.existsSync(path.join(TEST_DIR, 'lib/cool_module.js')))
-    T(fs.existsSync(path.join(TEST_DIR, 'test/cool_module.test.js')))
-
-    T(fs.readFileSync(path.join(TEST_DIR, 'package.json'), 'utf8').indexOf('cool_module') > 0)
+    T(fs.readFileSync(path.join(TEST_DIR, 'test.txt'), 'utf8') === 'Hello John!\n')
     done()
   })
 }
