@@ -1,4 +1,4 @@
 /*
-    Copyright @@date-year@@, @@author@@ <@@email@@>
+    Copyright @@author@@ <@@email@@>
     File: @@file@@
 */

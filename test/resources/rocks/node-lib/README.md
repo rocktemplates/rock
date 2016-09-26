@@ -14,4 +14,4 @@ Installation
 License
 -------
 
-Copyright {{date-year}}, {{author}} <{{email}}>
+Copyright {{author}} <{{email}}>
