@@ -1,6 +1,6 @@
 {
-    "name": "node-lib",
-    "description": "Barebones Node.js project.",
+    "name": "test",
+    "description": "Rock for unit testing rock itself.",
     "scripts": {
         "before": ["hi.sh"],
         "after": ["bye.js"]
