@@ -27,4 +27,29 @@ describe('rock', function () {
       })
     })
   })
+  describe('literal', function () {
+    it('should work with default delimiter', function (done) {
+      var file = path.join(TEST_DIR, 'literal.txt')
+      var expected = '{{\n'
+      rock.fetchFile(file, P('test/resources/rocks/literal.txt'), function (err) {
+        F(err)
+        EQ(expected, fs.readFileSync(file, 'utf8'))
+        done()
+      })
+    })
+    it('should work with alternate delimiter', function (done) {
+      var file = path.join(TEST_DIR, 'literal-alt.txt')
+      var expected = '@@\n'
+      rock.fetchFile(file, P('test/resources/rocks/literal-alt.txt'), {
+        tokens: {
+          open: '@@',
+          close: '@@'
+        }
+      }, function (err) {
+        F(err)
+        EQ(expected, fs.readFileSync(file, 'utf8'))
+        done()
+      })
+    })
+  })
 })
