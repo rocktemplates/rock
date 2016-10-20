@@ -35,7 +35,6 @@
   "devDependencies": {
     "mocha": "*",
     "nock": "^8.0.0",
-    "path-extra": "^3.0.0",
     "standard": "^8.0.0",
     "suppose": "^0.6.1",
     "terst": "^0.3.0",

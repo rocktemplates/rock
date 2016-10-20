@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 var P = require('autoresolve')
-var path = require('path-extra')
+var path = require('path')
 var fs = require('fs-extra')
 var rock = require(P('lib/rock'))
 var testutil = require('testutil')

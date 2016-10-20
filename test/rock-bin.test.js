@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 var P = require('autoresolve')
 var suppose = require('suppose')
-var path = require('path-extra')
+var path = require('path')
 var fs = require('fs-extra')
 var testutil = require('testutil')
 require('terst')
