@@ -1,41 +1,29 @@
-
-
 Node.js - rock
 =================
 
-Rock generates file structures or project skeletons based off of predefined templates. You can find a list of all of the templates on the [Github rocktemplates page][1].
+Rock generates file structures or project skeletons based off of predefined templates.
 
 
 Why?
 ----
 
-Do you constantly finding yourself writing a lot of new libraries for Node.js and having to create the `package.json`, `README`, `LICENSE`, `lib/`, `test/` files over and over again? Well, I did. Sometimes I was writing JavaScript libraries or CoffeeScript apps. But over and over I was getting annoyed of having to create the same file structure over and over again.
+Do you constantly finding yourself writing a lot of new libraries for Node.js and having to create the `package.json`, `README`, `LICENSE`, `lib/`, `test/` files over and over again? Well, I did. I was getting annoyed of having to create the same file structure over and over again.
 
 I stumbled upon a few solutions, but they all seem to do more than just generate a file structure from a template. That's all I wanted. Oh, and I wanted it to be programmatic too. So, if I wanted to build a blogging engine or another Rails clone in JS, I could leverage `rock` to generate the empty templates.
 
 As it stands now, `rock` is written in Node.js. But the actual templates themselves could be for any language.
 
 
-
 Installation
 ------------
 
-You will need Node.js and `npm` (Node.js Package Manager). This is included in the downloadable Node.js packages. If you don't have `npm`, mozy on over to the [latest Node.js package page][2]. There are prebuilt binaries and installers for most platforms including Mac OS X, Windows, and Linux.
+You will need Node.js and `npm` (Node.js Package Manager). This is bundled with Node.js. If you don't have `npm`, mozy on over to the [Node.js download page](https://nodejs.org/en/download/). There are prebuilt binaries and installers for most platforms including Mac OS X, Windows, and Linux.
 
 After you have installed Node.js and npm, you can install rock by running the following command:
 
     npm install -g rock
 
 Don't forget the **-g** flag. This will ensure that the `rock` command is available system wide.
-
-**Note:**
-At this time, `rock` requires `git` to be installed. This is because all the templates are hosted on Github. Since Github also provides tarballs and zipballs, this requirement will change soon.
-
-
-### After Install
-
-After install, `rock` will create the file `rockconf.json` in your `~/.rock/` directory. You can modify this file to include additional repositories if you like.
-
 
 
 Usage
@@ -46,6 +34,7 @@ Usage
 example:
 
     rock mylib -r node-lib
+
 or
 
     rock /tmp/mylib -r node-lib
@@ -53,17 +42,21 @@ or
 
 ### Options
 
-    Options:
-      --version              Print version and exit.
-      -r ROCK, --rock ROCK   The rock path or Github repo.
-      -c, --config           The config file. Defaults to ~/.rock/rock.conf.json
+```
+   --version              Print version and exit.
+   -r ROCK, --rock ROCK   The rock path or Github repo.
+   -c, --config           The config file. Defaults to ~/.rock/rock.conf.json
+   -f, --file             If the rock is a single file. Supports http as well.  [false]
+   --topen                Opening template value. Defaults to {{  [{{]
+   --tclose               Closing template value. Defaults to }}  [}}]
+```
 
 
-want to create a project from a rock hosted somewhere else? No problem:
+Want to create a project from a rock hosted somewhere else? No problem:
 
     rock myapp -r git@github.com:johndoe/myrepo.git
 
-or use Github shorthand a la [component](https://github.com/component/component)
+or use Github shorthand:
 
     rock myapp -r johndoe/myrepo
 
@@ -78,8 +71,8 @@ Example (myproject.js):
 ```javascript
 /*
    Author: {{author}} <{{email}}>
-   File: {{file}}
-   Created: {{date}}
+   File: {{-file}}
+   Created: {{-date}}
 */
 
 function main() {
@@ -97,7 +90,7 @@ Rock will prompt:
     email: [YOU_TYPE_YOUR_EMAIL_HERE]
 
 
-Rock, then will create the file structure of your new project with the values of your template tokens replaced with what you typed. Rock already understands `file`, `date`, and few others.
+Rock, then will create the file structure of your new project with the values of your template tokens replaced with what you typed. Rock already understands `-file`, `-date`, and a few others.
 
 ### Ignore Directories
 
@@ -114,7 +107,7 @@ Why would you do this? Let's say that you're calling rock programmatically and y
 
 ### Open / Close Templates
 
-If you don't want to use the default `{{` and `}}` and want to use something else, you can configure this behavior for your Rock:
+If you don't want to use the default `{{` and `}}` and want to use something else, you can configure this behavior for your Rock in `.rock/rock.json`:
 
 ```json
 {
@@ -126,7 +119,6 @@ If you don't want to use the default `{{` and `}}` and want to use something els
 ```
 
 You may want to do this if you  generate files that actually use Mustache templates.
-
 
 
 Single File Rocks
@@ -192,11 +184,6 @@ Rocks
 ------
 
 See more rocks at: https://github.com/rocktemplates or browse 3rd party Rocks here: https://github.com/rocktemplates/rock/wiki/rocks
-
-
-[1]: https://github.com/rocktemplates
-[2]: http://nodejs.org/dist/latest/
-
 
 
 Roadmap to v1.0.0
