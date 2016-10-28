@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 var P = require('autoresolve')
 var path = require('path')
-var fs = require('fs-extra')
+var fs = require('fs')
 var rock = require(P('lib/rock'))
 var testutil = require('testutil')
 var nock = require('nock')
@@ -20,14 +20,14 @@ describe('rock', function () {
 
   describe('+ fetchFile()', function () {
     describe('> when change open and closing templates', function () {
-      it('should generate a basic project', function (done) {
-        TEST(done)
+      it('should generate a basic project', function () {
+        return TEST()
       })
     })
   })
 })
 
-function TEST (done) {
+function TEST () {
   var file = path.join(TEST_DIR, 'info.txt')
   var remote = 'http://localhost/data.txt'
 
@@ -40,10 +40,8 @@ function TEST (done) {
     'project-name': 'Rock'
   }
 
-  rock.fetchFile(file, remote, {templateValues: templateValues, tokens: {open: '@@', close: '@@'}}, function (err) {
-    F(err)
+  return rock.fetchFile(file, remote, {templateValues: templateValues, tokens: {open: '@@', close: '@@'}})
+  .then(function () {
     EQ(TMPL_E, fs.readFileSync(file, 'utf8'))
-
-    done()
   })
 }

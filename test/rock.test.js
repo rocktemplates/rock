@@ -2,7 +2,7 @@
 var assert = require('assert')
 var P = require('autoresolve')
 var path = require('path')
-var fs = require('fs-extra')
+var fs = require('fs')
 var rock = require(P('lib/rock'))
 var testutil = require('testutil')
 require('terst')
@@ -24,40 +24,37 @@ describe('rock', function () {
 
   describe('+ fetchRepo()', function () {
     describe('> when default settings', function () {
-      it('should generate a basic project', function (done) {
-        TEST(rockRepo1, done)
+      it('should generate a basic project', function () {
+        return TEST(rockRepo1)
       })
     })
 
     describe('> when change open and closing templates', function () {
-      it('should generate a basic project', function (done) {
-        TEST(rockRepo2, done)
+      it('should generate a basic project', function () {
+        return TEST(rockRepo2)
       })
     })
   })
 })
 
-function TEST (rockRepo, done) {
+function TEST (rockRepo) {
   var testPath = path.join(TEST_PATH, 'create')
   var appName = 'myapp'
   var projectName = 'cool_module'
 
   // Make test dir:
-  fs.mkdir(testPath, rockCreate)
-  function rockCreate () {
-    process.chdir(testPath)
+  fs.mkdirSync(testPath)
+  process.chdir(testPath)
 
-    var templateValues = {
-      'author': 'JP Richardson',
-      'email': 'jprichardson@gmail.com',
-      'project-description': 'A cool test for a sweet library.',
-      'project-name': 'cool_module'
-    }
-
-    rock.fetchRepo(appName, rockRepo, {templateValues: templateValues}, verifyResults)
+  var templateValues = {
+    'author': 'JP Richardson',
+    'email': 'jprichardson@gmail.com',
+    'project-description': 'A cool test for a sweet library.',
+    'project-name': 'cool_module'
   }
-  function verifyResults (err) {
-    if (err) done(err)
+
+  return rock.fetchRepo(appName, rockRepo, {templateValues: templateValues})
+  .then(function () {
     var outDir = path.join(path.join(testPath, appName))
     var expectDir = P('test/resources/expect/' + appName)
 
@@ -77,7 +74,5 @@ function TEST (rockRepo, done) {
 
     assert(!fs.existsSync(path.join(outDir, '.git')))
     assert(!fs.existsSync(path.join(outDir, '.rock')))
-
-    done()
-  }
+  })
 }

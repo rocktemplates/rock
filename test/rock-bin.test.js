@@ -2,7 +2,7 @@
 var P = require('autoresolve')
 var suppose = require('suppose')
 var path = require('path')
-var fs = require('fs-extra')
+var fs = require('fs')
 var testutil = require('testutil')
 require('terst')
 

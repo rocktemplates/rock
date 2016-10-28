@@ -1,17 +1,12 @@
 #!/usr/bin/env node
 
 var P = require('autoresolve')
-  , rock = require(P('lib/rock.js'))
-  , osenv = require('osenv')
-  , fs = require('fs-extra')
-  , path = require('path')
-  , nom = require('nomnom')
-  , cl = require('cl')
-
-
-/*program.version(require('../package.json').version)
-  .option('-r, --rock [rock]', 'The rock path or Github repo.')
-  .parse(process.argv)*/
+var rock = require(P('lib/rock.js'))
+var osenv = require('osenv')
+var fs = require('fs-promise')
+var path = require('path')
+var nom = require('nomnom')
+var cl = require('cl')
 
 var opts = nom.script('rock')
   .option('version',  {help: 'Print version and exit.', flag: true, callback: function() { return require('../package.json').version }})
@@ -30,7 +25,8 @@ if (fs.existsSync(opts.config)) {
 }
 
 if (opts.rock && !opts.file) {
-  rock.fetchRepo(opts.path, opts.rock, config, function(err){
+  rock.fetchRepo(opts.path, opts.rock, config)
+  .catch(function(err){
     if (err) cl.exit(1, err)
   })
 }
@@ -40,7 +36,8 @@ if (opts.rock && opts.file) {
     config.tokens = {open: opts.topen, close: opts.tclose}
   }
 
-  rock.fetchFile(opts.path, opts.rock, config, function(err) {
+  rock.fetchFile(opts.path, opts.rock, config)
+  .catch(function(err) {
     if (err) cl.exit(1, err)
   })
 }
