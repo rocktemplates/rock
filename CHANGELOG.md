@@ -1,3 +1,12 @@
+0.4.0 / 2016-11-03
+------------------
+* rock now uses promises instead of callbacks
+* prefixed `file` and `date-*` with `-` to prevent collisions
+* the `.git` directory is not copied when using a local rock
+* added `{{-literal}}` token to output `{{`
+* added `delete` array to `.rock/rock.json` for deleting files from rocks
+
+
 0.3.1 / 2013-10-30
 ------------------
 * removed `preferGlobal`
