@@ -11,6 +11,7 @@ var TEST_PATH = ''
 
 var rockRepo1 = P('test/resources/rocks/node-lib')
 var rockRepo2 = P('test/resources/rocks/node-lib-tmpl')
+var rockRepo3 = P('test/resources/rocks/filename')
 
 function AFE (file1, file2) {
   EQ(fs.readFileSync(file1).toString(), fs.readFileSync(file2).toString())
@@ -32,6 +33,28 @@ describe('rock', function () {
     describe('> when change open and closing templates', function () {
       it('should generate a basic project', function () {
         return TEST(rockRepo2)
+      })
+    })
+
+    describe('> when tokens are only in filenames', function () {
+      it('should work anyway', function () {
+        var testPath = path.join(TEST_PATH, 'filename-test')
+
+        // Make test dir:
+        fs.mkdirSync(testPath)
+        process.chdir(testPath)
+
+        var templateValues = {
+          'test': 'hello-world'
+        }
+
+        return rock.fetchRepo('project', rockRepo3, {templateValues: templateValues})
+        .then(function () {
+          var outDir = path.join(testPath, 'project')
+
+          assert(fs.existsSync(outDir))
+          assert(fs.existsSync(path.join(outDir, 'hello-world.js')))
+        })
       })
     })
   })
